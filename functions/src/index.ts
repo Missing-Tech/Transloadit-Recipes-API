@@ -1,0 +1,1 @@
+export {receivePOST} from "./http";
