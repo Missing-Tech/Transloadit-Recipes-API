@@ -12,6 +12,7 @@ export const receivePOST = functions.https.onRequest((request, response) => {
       title: `Your ${name} is ready!`,
       body: "Tap here to check it out!",
     },
+    data: request.body,
   };
 
   admin.messaging().sendToDevice(token, payload);
