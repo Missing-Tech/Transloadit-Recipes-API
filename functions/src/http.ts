@@ -5,10 +5,11 @@ admin.initializeApp();
 
 export const receivePOST = functions.https.onRequest((request, response) => {
   const token = String(request.query.token);
+  const name = String(request.query.name);
 
   const payload = {
     notification: {
-      title: "Your food is ready!",
+      title: `Your ${name} is ready!`,
       body: "Tap here to check it out!",
     },
   };
