@@ -12,10 +12,26 @@ export const receivePOST = functions.https.onRequest((request, response) => {
       title: `Your ${name} is ready!`,
       body: "Tap here to check it out!",
     },
-    data: request.body,
+    data: {
+      click_action: "FLUTTER_NOTIFICATION_CLICK",
+      sound: "default",
+      status: "done",
+      screen: "/receipt",
+    },
   };
 
-  admin.messaging().sendToDevice(token, payload);
+  const options = {
+    priority: "high",
+    timeToLive: 60 * 60 * 24,
+  };
+
+  try {
+    admin.messaging().sendToDevice(token, payload, options);
+  } catch (error) {
+    console.log(error);
+  }
 
   response.send("Transloadit!");
+
+  return;
 });
