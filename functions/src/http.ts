@@ -28,6 +28,7 @@ export const receivePOST = functions.https.onRequest((request, response) => {
   try {
     admin.messaging().sendToDevice(token, payload, options);
   } catch (error) {
+    response.status(500);
     console.log(error);
   }
 
