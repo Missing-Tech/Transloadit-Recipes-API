@@ -32,6 +32,5 @@ export const receivePOST = functions.https.onRequest((request, response) => {
   }
 
   response.send("Transloadit!");
-
-  return;
+  response.status(200);
 });
