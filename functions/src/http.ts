@@ -25,12 +25,10 @@ export const receivePOST = functions.https.onRequest((request, response) => {
     timeToLive: 60 * 60 * 24,
   };
 
-  try {
-    admin.messaging().sendToDevice(token, payload, options);
-  } catch (error) {
+  admin.messaging().sendToDevice(token, payload, options).catch((error) => {
     response.status(500);
     console.log(error);
-  }
+  });
 
   response.send("Transloadit!");
   response.status(200);
